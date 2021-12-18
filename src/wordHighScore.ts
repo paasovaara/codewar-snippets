@@ -6,8 +6,7 @@ export const wordValue = (str: string): number => {
 }
 
 export const high = (str: string): string => {
-  const words: string[] = str.split(" ");
-  const values: number[] = words.map(word => wordValue(word));
-  const maxIndex = values.indexOf(Math.max(...values));
-  return words[maxIndex];
+  return str.split(" ")
+    .reduce((prevMaxWord, curWord) => 
+      wordValue(curWord) > wordValue(prevMaxWord) ? curWord : prevMaxWord );
 }
