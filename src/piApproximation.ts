@@ -9,22 +9,36 @@
  * your approximation of PI with 10 decimals
  */
 
-
- export function factorialForIteration (n: number): number {
-  if (n == 0) 
-    return 1;
-  const isOdd = (n: number): number => n % 2 == 1 ? 1 : -1;
-  return -1 * isOdd(n) / (2 * n + 1);
-}
-
 export class G964 {
+  public static factorialForIteration (n: number): number {
+    if (n == 0) 
+      return 1;
+    const isOdd = (n: number): number => n % 2 == 1 ? 1 : -1;
+    return -1 * isOdd(n) / (2 * n + 1);
+  }
+  
   public static iterPi(epsilon: number): number[] {
     let iteration: number = 0;
     let estimate: number = 0.0;
     while (Math.abs(Math.PI - estimate) > epsilon) {
-      estimate += 4 * factorialForIteration(iteration++)
+      estimate += 4 * G964.factorialForIteration(iteration++)
     }
     const roundedEstimate = Math.round(estimate * 10**10) / 10**10; // round to 10 decimal precision
     return [iteration, roundedEstimate];
+  }
+
+  //Alternative solution using recursion
+  public static iterPiRecursively(epsilon: number): number[] {
+    const calcPi = (curEstimate: number, iteration: number): number[] => {
+      if (Math.abs(Math.PI - curEstimate) < epsilon) {
+        const roundedEstimate = Math.round(curEstimate * 10**10) / 10**10; // round to 10 decimal precision
+        return [iteration, roundedEstimate];
+      }
+      else {
+        const nextEstimate = curEstimate + 4 * G964.factorialForIteration(iteration++)
+        return calcPi(nextEstimate, iteration);        
+      }
+    };
+    return calcPi(0, 0);
   }
 }

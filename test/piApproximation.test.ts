@@ -8,10 +8,10 @@ function testIt(eps, expected) {
 
 describe("Test factorial generation", function() {
   it("Basic tests", function() {
-    assert.deepEqual(solution.factorialForIteration(0), 1);
-    assert.deepEqual(solution.factorialForIteration(1), -1/3);
-    assert.deepEqual(solution.factorialForIteration(2), 1/5);
-    assert.deepEqual(solution.factorialForIteration(3), -1/7);
+    assert.deepEqual(solution.G964.factorialForIteration(0), 1);
+    assert.deepEqual(solution.G964.factorialForIteration(1), -1/3);
+    assert.deepEqual(solution.G964.factorialForIteration(2), 1/5);
+    assert.deepEqual(solution.G964.factorialForIteration(3), -1/7);
   });
 });
 
