@@ -10,7 +10,7 @@
  * The function len_curve (or similar in other languages) takes n as parameter (number of sub-intervals) and returns the length of the curve.
  */
 
-export class G964 {
+ export class G964 {
     
   public static lenCurve = (n) => {
     const pointCount = n + 1;
@@ -29,14 +29,14 @@ export class G964 {
                y: y(x) 
              };
     });
+    // Calculate lengths between points and sum them up
+    const sum = points.map((point, index, array) => {
+      if (index == 0)
+        return 0;
+      const previousPoint = array[index-1];
+      return Math.hypot(point.x - previousPoint.x, point.y - previousPoint.y);
+    }).reduce((acc, val) => acc + val);
     
-    let sum = 0;
-    for (n = 1; n < points.length; n++) {
-      const p1 = points[n-1];
-      const p2 = points[n];
-      const length = Math.hypot(p2.x - p1.x, p2.y - p1.y);
-      sum += length;
-    }
     return sum;
   }  
 }
